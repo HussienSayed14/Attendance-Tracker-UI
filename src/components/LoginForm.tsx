@@ -3,6 +3,7 @@ import { login } from "../services/auth";
 import type { LoginForm as LoginFormType }  from "../types/User";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { authStore } from "../store/authStore";
 
 
 export function LoginForm() {
@@ -18,7 +19,8 @@ export function LoginForm() {
     e.preventDefault();
     setError(""); // clear previous error
     try {
-      const res = await login(form);              // <-- call service
+      const res = await login(form);           
+      authStore.getState().setAuth(res.access_token, res.name, res.email); // update global auth state
       localStorage.setItem("token", res.access_token);
       localStorage.setItem("name", res.name);
       navigate("/home");                              // redirect on success
