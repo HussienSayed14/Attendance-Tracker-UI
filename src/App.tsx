@@ -5,6 +5,7 @@ import RegisterPage from "./pages/Register";
 import SummaryPage  from "./pages/AttendanceSummary";
 import PrivateRoute     from "./components/PrivateRoute";
 import ProtectedLayout  from "./layouts/ProtectedLayout";
+import CalendarPage from "./pages/Calendar";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
       <Route element={<PrivateRoute />}>
         <Route element={<ProtectedLayout />}>
           <Route path="/home" element={<SummaryPage />} />          
+          <Route path="/calendar" element={<CalendarPage />} />          
         </Route>
       </Route>
 

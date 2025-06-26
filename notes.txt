@@ -17,3 +17,5 @@ npm i zustand dayjs
 
 # Toast notifications
 npm i sonner
+
+npx shadcn@latest add table
