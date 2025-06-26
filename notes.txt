@@ -1,0 +1,19 @@
+# UI & styling
+npm i tailwindcss postcss autoprefixer            # Tailwind core
+npx tailwindcss init -p                           # generates tailwind.config.js & postcss.config.js
+npm i clsx                                        # small helper for conditional className
+
+# Shadcn UI (optional but recommended)
+npx shadcn-ui@latest init                         # adds shadcn/ui + lucide icons
+
+# Routing & HTTP
+npm i react-router-dom axios
+
+# Form handling & validation
+npm i react-hook-form zod @hookform/resolvers
+
+# State management & dates
+npm i zustand dayjs
+
+# Toast notifications
+npm i sonner
