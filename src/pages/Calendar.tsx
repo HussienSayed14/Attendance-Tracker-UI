@@ -126,7 +126,6 @@ export default function AttendanceEditor() {
             <TableRow>
               <TableHead>Date</TableHead>
               <TableHead>Day</TableHead>
-              <TableHead>Holiday</TableHead>
               <TableHead>Status</TableHead>
             </TableRow>
           </TableHeader>
@@ -135,12 +134,10 @@ export default function AttendanceEditor() {
               <TableRow key={row.date}>
                 <TableCell>{row.date}</TableCell>
                 <TableCell>{row.day_name}</TableCell>
-                <TableCell>
-                  {row.is_holiday ? <Badge variant="secondary">Holiday</Badge> : "-"}
-                </TableCell>
+               
                 <TableCell>
                   {row.is_holiday ? (
-                    <span className="text-muted-foreground text-sm">Locked</span>
+                    <span className="text-muted-foreground text-sm">Holiday</span>
                   ) : (
                     <Select
                       value={row.status ?? ""}
