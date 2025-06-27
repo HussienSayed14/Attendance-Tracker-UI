@@ -4,6 +4,10 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import { registerUser } from "../services/auth";
 import type { RegisterForm } from "../types/User";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+
 
 export default function Register() {
   const [form, setForm] = useState<RegisterForm>({
@@ -12,28 +16,43 @@ export default function Register() {
     password: "",
   });
 
-  const [loading, setLoading] = useState(false); // ✅ loading state
+  const [loading, setLoading] = useState(false);
+  const [error, setError]   = useState("");
+
+  const navigate = useNavigate();
+
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
+  e.preventDefault();
+  setLoading(true);
+  setError("");
 
-    try {
-      await registerUser(form);
-      toast.success("Registered successfully!");
-      // optionally redirect to login: window.location.href = "/login";
-    } catch (err) {
-      toast.error("Registration failed. Try again.");
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    await registerUser(form);
+    toast.success("Registered successfully!");
 
+    
+    setTimeout(() => {
+      navigate("/login", { replace: true });
+    }, 2000);
+
+  } catch (err) {
+    const message =
+      axios.isAxiosError(err) && err.response?.data?.detail
+        ? err.response.data.detail
+        : (err as Error).message || "Unexpected error";
+
+    setError(message);
+    toast.error(message);
+  } finally {
+    setLoading(false);
+  }
+};
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <form
@@ -45,6 +64,8 @@ export default function Register() {
         <Input label="Name" name="name" value={form.name} onChange={handleChange} required />
         <Input label="Email" name="email" type="email" value={form.email} onChange={handleChange} required />
         <Input label="Password" name="password" type="password" value={form.password} onChange={handleChange} required />
+
+        {error && <p className="text-red-500 text-sm -mt-4">{error}</p>}
 
         <Button type="submit" disabled={loading}>
           {loading ? "Registering..." : "Register"}

@@ -42,7 +42,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
 
       navigate("/home", { replace: true });
     } catch (err) {
-      authStore
+      
       // extract FastAPI error response if present
       const message = axios.isAxiosError(err) && err.response?.data?.detail
         ? err.response.data.detail
