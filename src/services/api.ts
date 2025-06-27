@@ -13,10 +13,11 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (res) => res,
   (err) => {
-    if (err.response?.status === 401) {
-      authStore.getState().logout(); // clear token + user
+    const isLoginRoute = err.config?.url?.includes("/auth/login");
+    if (!isLoginRoute && err.response?.status === 401) {
+      authStore.getState().logout();
       toast.error("Session expired, please log in again.");
-      window.location.href = "/login";
+      window.location.href = "/login";      // or use navigate()
     }
     return Promise.reject(err);
   }
