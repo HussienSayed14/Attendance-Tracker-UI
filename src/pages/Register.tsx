@@ -36,7 +36,12 @@ export default function Register() {
         <Input label="Name" name="name" value={form.name} onChange={handleChange} required />
         <Input label="Email" name="email" type="email" value={form.email} onChange={handleChange} required />
         <Input label="Password" name="password" type="password" value={form.password} onChange={handleChange} required />
-        <Button type="submit">Register</Button>
+        <Button type="submit">Register</Button> <div className="mt-4 text-center text-sm">
+              Already Have an Account?{" "}
+              <a href="/login" className="underline underline-offset-4">
+                Login
+              </a>
+            </div>
       </form>
     </div>
   );
