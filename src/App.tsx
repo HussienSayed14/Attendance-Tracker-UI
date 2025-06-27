@@ -6,6 +6,7 @@ import SummaryPage  from "./pages/AttendanceSummary";
 import PrivateRoute     from "./components/PrivateRoute";
 import ProtectedLayout  from "./layouts/ProtectedLayout";
 import CalendarPage from "./pages/Calendar";
+import AuthGate from "./components/AuthGate";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
       {/* Public routes */}
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path="/" element={<AuthGate />} />
 
       {/* Protected routes wrapper */}
       <Route element={<PrivateRoute />}>
