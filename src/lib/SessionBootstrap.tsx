@@ -15,7 +15,7 @@ export default function SessionBootstrap({ children }: { children: React.ReactNo
 
     api.get("/auth/me")
       .then((res) => {
-        const { id, name, email, permissions } = res.data;
+        const { name, email, permissions } = res.data;
         setAuth(token, name, email, permissions);
       })
       .catch(() => {
