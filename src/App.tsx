@@ -9,6 +9,7 @@ import CalendarPage from "./pages/Calendar";
 import AuthGate from "./components/AuthGate";
 
 export default function App() {
+  
   return (
     <Routes>
       {/* Public routes */}
