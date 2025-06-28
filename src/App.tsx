@@ -7,6 +7,9 @@ import PrivateRoute     from "./components/PrivateRoute";
 import ProtectedLayout  from "./layouts/ProtectedLayout";
 import CalendarPage from "./pages/Calendar";
 import AuthGate from "./components/AuthGate";
+import UserManagement from "./pages/UserManagement";
+import Unauthorized from "./pages/Unauthorized";
+
 
 export default function App() {
   
@@ -16,12 +19,14 @@ export default function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/" element={<AuthGate />} />
+      <Route path="/unauthorized" element={<Unauthorized />} />
 
       {/* Protected routes wrapper */}
       <Route element={<PrivateRoute />}>
         <Route element={<ProtectedLayout />}>
           <Route path="/home" element={<SummaryPage />} />          
-          <Route path="/calendar" element={<CalendarPage />} />          
+          <Route path="/calendar" element={<CalendarPage />} />  
+          <Route path="/manage-users" element={<UserManagement />} />
         </Route>
       </Route>
 

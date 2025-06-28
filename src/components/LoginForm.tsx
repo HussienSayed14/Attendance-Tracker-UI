@@ -36,7 +36,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
       // guard: make sure token exists
       if (!res.access_token) throw new Error("No token received");
 
-      authStore.getState().setAuth(res.access_token, res.name, res.email);
+      authStore.getState().setAuth(res.access_token, res.name, res.email, res.permissions);
       localStorage.setItem("token", res.access_token);
       localStorage.setItem("name",  res.name);
 
