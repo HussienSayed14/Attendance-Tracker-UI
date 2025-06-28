@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
 import { authStore } from "../store/authStore"; 
-import defaultAvatar from "../assets/default-avatar.png";
 import moonAvatar from "../assets/moon.jpg"
 import calendarIcon from "../assets/icons-calendar.png";
 import { useState } from "react";
