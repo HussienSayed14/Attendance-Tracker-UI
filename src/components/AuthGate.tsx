@@ -14,4 +14,5 @@ export default function AuthGate() {
   }, [navigate]);
 
   return null;   // renders nothing while redirecting
+  
 }
